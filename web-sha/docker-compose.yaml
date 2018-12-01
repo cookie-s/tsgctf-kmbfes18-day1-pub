@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app1:
+    build: .
+    user: 9999:9999
+    environment:
+      RACK_ENV: production
+    command: ['/bin/sh', '-c', 'cd /app && bundle install && bundle exec puma -C puma.rb']
+    volumes:
+      - '.:/app:ro'
+    ports:
+      - '12873:3000'
+#   logging:
+#     driver: gcplogs
